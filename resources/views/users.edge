@@ -1,0 +1,64 @@
+@layout('layout.app')
+ @section('content')
+ <div class="h-100 w-100 row justify-content-center">
+    <div class="col-10">
+      @include('layout.notification')
+      <div class="row">
+        <div class="col">
+          <div class="box">
+            <h1 class="title"></h1>
+        
+              <table class="table is-bordered is-striped is-narrow is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre usuario</th>
+                    <th class="d-flex justify-content-center">Acci&oacuten</th> 
+                  </tr>
+                </thead>
+                <tbody>
+                    @each(user in users.toJSON().data)
+                      <tr>
+                        <td>
+                          {{ user.id }}
+                        </td>
+                        <td>
+                          {{ user.name }}
+                        </td>
+                        <td class="d-flex justify-content-center">
+                            <form action="{{ 'admin/delete-user/'+user.id + '?_method=DELETE'}}" method="POST">
+                              <button class="btn btn-danger btn-clock" type="submit" onclick="return confirm('¿ Está seguro de eliminar: {{ user.name}} ?')">
+                                <strong>Eliminar</strong>
+                              </button>
+                            </form>
+                          </td>
+                      </tr>
+                    @else
+                      <tr>
+                        <td colspan="3" class="has-text-centered">Sin usuarios!</td>
+                      </tr>
+                    @endeach
+                  </tbody>
+                </table>
+            </div>
+                <div class="row">
+                    <div class="col">
+                    @if(users.toJSON().data.length)
+                        @!component('common/_pagination', pagination = users.toJSON() )
+                    @endif
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <a href="/add-user" >
+                            <button class="btn btn-success btn-clock">
+                              <strong>Agregar usuario</strong>
+                            </button>
+                          </a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ @endsection

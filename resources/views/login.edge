@@ -1,0 +1,30 @@
+@layout('layout.app')
+
+@section('content')
+
+<div class="h-100 w-100 row justify-content-center align-items-center">
+  <div class="col-4">
+    @include('layout.notification')
+    <h1 class="text-center">Entrar</h1>
+    <div>
+      <form action="/api/login" method="POST">
+        {{ csrfField() }}
+        <div class="form-group">
+          <input name="email" type="email" value="{{ old('email') }}" class="form-control {{ hasErrorFor('email') ? 'is-invalid' : '' }}" placeholder="Email">
+          {{ elIf('<span class="invalid-feedback">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+        </div>
+        <div class="form-group">
+          <input name="password" type="password" value="{{ old('password') }}" class="form-control {{ hasErrorFor('password') ? 'is-invalid' : '' }}" placeholder="Password">
+          {{ elIf('<span class="invalid-feedback">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">
+            Iniciar sesi&oacute;n
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+@endsection

@@ -1,0 +1,26 @@
+@layout('layout.app')
+@section('content')
+<div class="h-100 w-100 row justify-content-center align-items-center">
+    
+    <div class="col-6">
+      @include('layout.notification')
+      <form action="{{'/app/ringtons/'+ app_id+'/add'}}" method="POST" enctype="multipart/form-data">
+        <h1 class="text-center">Agregar ringtons</h1>
+        {{ csrfField() }}
+        <div class="form-group">
+          <input type="text" name="image" value="{{ old('image') }}" class="form-control {{ hasErrorFor('image') ? 'is-invalid' : '' }}" placeholder="Imagen">
+          {{ elIf('<span class="invalid-feedback">$self</span>', getErrorFor('image'), hasErrorFor('image')) }}
+        </div>
+        <p></p>
+        
+        <div class="form-group">
+            <input type="file" id="tono" name="tono[]"  accept="audio/*" multiple/>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+         Agregar
+        </button>
+      </form>
+    </div>
+  </div>
+
+@endsection

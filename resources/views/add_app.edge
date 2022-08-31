@@ -1,0 +1,22 @@
+@layout('layout.app')
+
+@section('content')
+
+<div class="h-100 w-100 row justify-content-center align-items-center">
+    <div class="col-6">
+      @include('layout.notification')
+      <h1 class="text-center">Agregar App</h1>
+      <form action="/add-app" method="POST">
+        {{ csrfField() }}
+        <div class="form-group">
+          <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ hasErrorFor('name') ? 'is-invalid' : '' }}" placeholder="Nombre">
+          {{ elIf('<span class="invalid-feedback">$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary btn-block">
+         Agregar
+        </button>
+      </form>
+    </div>
+  </div>
+@endsection
