@@ -90,8 +90,10 @@ class RingtonController {
         tonos.moveAll(Helpers.publicPath(path), (file) => {
             allRinngtones.push(file.clientName);
             alltTypes.push(file.extname);
+            var old_path_rington = file.clientName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            var name_rington = old_path_rington.replace('_' + file.extname, '.' + file.extname);
             return {
-                name: file.clientName,
+                name: name_rington,
                 overwrite: true
             }
         })
