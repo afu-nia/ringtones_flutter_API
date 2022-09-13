@@ -86,8 +86,10 @@ class RingtonController {
         const path = 'upload/' + app_id;
 
         var allRinngtones = [];
+        var alltTypes = [];
         tonos.moveAll(Helpers.publicPath(path), (file) => {
             allRinngtones.push(file.clientName);
+            alltTypes.push(file.extname);
             return {
                 name: file.clientName,
                 overwrite: true
@@ -96,7 +98,8 @@ class RingtonController {
 
         for (let index = 0; index < allRinngtones.length; index++) {
             const name = allRinngtones[index];
-            const path_rington = allRinngtones[index];
+            var old_path_rington = name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            var path_rington = old_path_rington.replace('_' + alltTypes[index], '.' + alltTypes[index]);
             const rington = await Rington.create({
                 app_id,
                 name,
