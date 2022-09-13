@@ -1,4 +1,6 @@
 'use strict'
+
+
 const Rington = use('App/Models/Rington');
 const Database = use('Database');
 const { flashAndRedirect } = use('App/helpers');
@@ -51,7 +53,9 @@ class RingtonController {
 
         const path = 'upload/' + app_id;
         const name = tono.clientName;
-        const path_rington = name;
+
+        var old_path_rington = name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        var path_rington = old_path_rington.replace('_' + tono.extname, '.' + tono.extname);
         await tono.move(Helpers.publicPath(path), {
             name: path_rington,
             overwrite: true

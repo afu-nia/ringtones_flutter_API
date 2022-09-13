@@ -22,17 +22,17 @@ class AdminUserSeeder {
         {
           id: 1,
           name: 'Admin User',
-          email: 'g1iorey87@gmail.com',
-          password: await Hash.make('123456'),
+          email: 'niaa1pps@gmail.com',
+          password: await Hash.make('Agosto26'),
           roll: 1
         },
-        {
-          id: 2,
-          name: 'Gio User',
-          email: 'g1iorey87_1@gmail.com',
-          password: await Hash.make('123456'),
-          roll: 0
-        }
+        // {
+        //   id: 2,
+        //   name: 'Gio User',
+        //   email: 'g1iorey87_1@gmail.com',
+        //   password: await Hash.make('123456'),
+        //   roll: 0
+        // }
       ]
     );
   }
