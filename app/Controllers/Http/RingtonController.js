@@ -129,6 +129,18 @@ class RingtonController {
         }
     }
 
+    async seach({ request, response, params }) {
+        const word = params.word;
+        const app_id = params.app_id;
+
+        const ringtones = await Database.select('*').from('ringtons')
+            .where('app_id', app_id)
+            .where('name', 'LIKE', '%' + word + '%');
+        return response.status(200).json({
+            ringtones
+        });
+    }
+
 }
 
 module.exports = RingtonController
