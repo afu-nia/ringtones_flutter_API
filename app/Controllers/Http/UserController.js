@@ -53,13 +53,12 @@ class UserController {
     // Registrar nuevo usuario
     async store({ request, response, session }) {
 
-        const { email, name, phone, product } = request.all();
+        const { email, name } = request.all();
 
 
         const validation = await validate(request.all(), {
             email: 'required|email',
             name: 'required',
-            phone: 'required',
         });
 
         if (validation.fails()) {
@@ -82,14 +81,12 @@ class UserController {
 
         const password = randomString({ lenght: 10 });
 
-        const roll = 1;
+        const roll = 0;
 
         const user = await User.create({
             email,
             password,
             name,
-            phone,
-            product,
             roll,
         });
 
@@ -101,7 +98,7 @@ class UserController {
         await Mail.send('email.register_email', userTemp, message => {
             message
                 .to(user.email)
-                .from('admin@mi_compania.com')
+                .from('niaa1pps@gmail.comm')
                 .subject('Detalles de acceso Ringtones Api')
 
         });
@@ -109,7 +106,7 @@ class UserController {
         return flashAndRedirect(
             'success',
             'Cuenta registrada correctamente!',
-            '/signup',
+            '/list-users',
             {
                 session,
                 response,

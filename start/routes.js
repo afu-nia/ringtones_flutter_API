@@ -15,7 +15,7 @@ Route.post('admin/delete-app/:id', 'UserController.appDelete').middleware(['auth
 // Add user
 Route.get('/add-user', 'PageController.showAddUser').middleware(['auth']).as('dashboard');
 // admin add user
-Route.post('admin/register', 'UserController.store').middleware(['auth']).as('dashboard');
+Route.post('/admin/register', 'UserController.store').middleware(['auth']).as('dashboard');
 
 
 // list users
